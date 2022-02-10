@@ -22,5 +22,11 @@ module.exports = {
 		'no-param-reassign': 'off',
 		'prettier/prettier': 'error',
 		'import/prefer-default-export': 'off',
+		'vue/multi-word-component-names': [
+			'error',
+			{
+				ignores: ['Work', 'Config', 'Index'],
+			},
+		],
 	},
 };

@@ -4,10 +4,21 @@ import path from 'path';
 import styleImport from 'vite-plugin-style-import';
 import Components from 'unplugin-vue-components/vite'; // 自动化组件引入
 import configs from './src/configs';
+import AutoImport from 'unplugin-auto-import/vite';
+import Components from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-	plugins: [vue(), Components({})],
+	plugins: [
+		vue(),
+		AutoImport({
+			resolvers: [ElementPlusResolver()],
+		}),
+		Components({
+			resolvers: [ElementPlusResolver()],
+		}),
+	],
 	server: {
 		host: '0.0.0.0',
 		proxy: {
