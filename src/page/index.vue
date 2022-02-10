@@ -11,10 +11,10 @@ onBeforeMount(() => {
 			'config',
 			JSON.stringify({
 				working: false,
-				backgroundColor: '#1c1d21',
+				backgroundColor: 'rgba(81, 92, 107, 1)',
 				color: '#e5e5e5',
-				setTime: 10,
-				timeRest: 10,
+				setTime: 180,
+				timeRest: 180,
 				disabled: false,
 				mutex: false,
 			})
