@@ -3,18 +3,17 @@
 // Read more: https://github.com/vuejs/vue-next/pull/3399
 
 declare module 'vue' {
-	export interface GlobalComponents {
-		ElButton: typeof import('element-plus/es')['ElButton'];
-		ElColorPicker: typeof import('element-plus/es')['ElColorPicker'];
-		ElContainer: typeof import('element-plus/es')['ElContainer'];
-		ElDialog: typeof import('element-plus/es')['ElDialog'];
-		ElForm: typeof import('element-plus/es')['ElForm'];
-		ElFormItem: typeof import('element-plus/es')['ElFormItem'];
-		ElHeader: typeof import('element-plus/es')['ElHeader'];
-		ElInput: typeof import('element-plus/es')['ElInput'];
-		ElMain: typeof import('element-plus/es')['ElMain'];
-		HelloWorld: typeof import('./src/components/HelloWorld.vue')['default'];
-	}
+  export interface GlobalComponents {
+    ElButton: typeof import('element-plus/es')['ElButton']
+    ElColorPicker: typeof import('element-plus/es')['ElColorPicker']
+    ElContainer: typeof import('element-plus/es')['ElContainer']
+    ElDialog: typeof import('element-plus/es')['ElDialog']
+    ElForm: typeof import('element-plus/es')['ElForm']
+    ElFormItem: typeof import('element-plus/es')['ElFormItem']
+    ElHeader: typeof import('element-plus/es')['ElHeader']
+    ElInput: typeof import('element-plus/es')['ElInput']
+    ElMain: typeof import('element-plus/es')['ElMain']
+  }
 }
 
-export {};
+export { }
