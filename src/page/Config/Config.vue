@@ -23,6 +23,36 @@
 						</el-form-item>
 					</el-form>
 				</div>
+				<div id="write" class="useage">
+					<h4 id="使用指南"><span>使用指南</span></h4>
+					<ol>
+						<li>打开页面后配置划水时间, 需要显示的前景色与背景色(提供windows预设的主题色表)</li>
+						<li>点击开始划水就可以进入划水页面了</li>
+						<li>按下F11将网页全屏, 右键即可切换鼠标是否显示</li>
+						<li>
+							如果您需要多屏显示: 在已有的划水页面(称之为主应用)后再打开一个新的划水页面(我们称之为从应用). 在从应用配置时, 若是检测到存在主应用则会提示您是否跟随显示
+							<ul>
+								<li><span>选择&quot;是&quot;, 从应用将直接开始划水, 并与主应用页面同步显示</span></li>
+								<li><span>选择&quot;否&quot;, 您可以创建一个仅对该会话有效的划水页面, 该页面不会跟随主应用状态, 不会被其他摸鱼页面检测到</span></li>
+							</ul>
+						</li>
+						<li>
+							关于主应用与从应用
+							<ul>
+								<li><span>只能有一个主应用</span></li>
+								<li><span>在配置页面中, 网页会自动判断是否有主应用存在, 如果没有则自动设为主应用</span></li>
+								<li><span>在主应用结束计时并退出之前, 主应用将一直占用主应用名额(即使意外关闭)</span></li>
+								<li><span>当主从应用都在工作且从应用设置为跟随模式时, 如果从应用检测到主应用被意外关闭, 从应用会自动切换为主应用为其他从应用服务</span></li>
+								<li>
+									<span
+										>当主应用被意外退出, 且没有从应用接管时, 主应用工作状态将会被保存, 当您下次打开划水页面时, 您仍可以恢复执行(先根据提示进入从应用跟随模式, 然后从应用会自动切换为主应用).
+										您也可以设置不恢复执行, 这需要您在配置中点击清空主进程来清除主应用执行状态.</span
+									>
+								</li>
+							</ul>
+						</li>
+					</ol>
+				</div>
 			</el-main>
 		</el-container>
 	</div>
@@ -87,7 +117,7 @@ function toNext() {
 		config.value.mutex = true;
 		localStorage.setItem('config', JSON.stringify(config.value));
 	}
-	router.push('work');
+	router.replace('work');
 }
 function clearMutexProcess() {
 	localStorage.removeItem('config');
@@ -109,7 +139,7 @@ export default defineComponent({
 
 <style lang="less" scoped>
 .config {
-	width: 50vw;
+	width: 10vw;
 	min-width: 380px;
 }
 
@@ -142,5 +172,10 @@ export default defineComponent({
 		color: #fff;
 		text-decoration: none;
 	}
+}
+
+.useage {
+	text-align: left;
+	line-height: 1.5;
 }
 </style>

@@ -22,7 +22,7 @@ const stat = reactive({
 	process: 0,
 });
 const updateWapper = ref(null);
-function updateConf(v) {
+function updateConf(v: IConfig) {
 	if (sessionStorage.getItem('config')) sessionStorage.setItem('config', JSON.stringify(v));
 	localStorage.setItem('config', JSON.stringify(v));
 }

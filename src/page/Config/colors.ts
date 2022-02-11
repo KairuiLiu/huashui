@@ -1,4 +1,4 @@
-export const ColorOps = [
+export const ColorOps: string[] = [
 	'#e5e5e5',
 	'#1c1d21',
 	'rgb(126,115,95)',
