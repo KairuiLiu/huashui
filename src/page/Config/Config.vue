@@ -3,7 +3,7 @@
 		<el-container>
 			<el-header class="header">
 				<div class="left">划水 - 将您的电脑伪装为系统更新</div>
-				<div class="right"><a href="https://github.com/KairuiLiu/huashui">去GitHub了解更多</a></div>
+				<div class="right"></div>
 			</el-header>
 			<el-main>
 				<div class="config">
@@ -17,6 +17,9 @@
 						<el-form-item label="前景色">
 							<el-color-picker v-model="config.color" show-alpha :predefine="predefineColors" />
 						</el-form-item>
+						<el-form-item label="系统缩放比例" prop="scale">
+							<el-input v-model.number="config.scale" type="number"></el-input>
+						</el-form-item>
 						<el-form-item>
 							<el-button @click="clearMutexProcess">清空主进程</el-button>
 							<el-button type="primary" @click="handleSubmit(ruleFormRef)">🏄🏼开始划水</el-button>
@@ -24,9 +27,21 @@
 					</el-form>
 				</div>
 				<div id="write" class="useage">
-					<h4 id="使用指南"><span>使用指南</span></h4>
+					<h4><span>介绍</span></h4>
+					<p>
+						根据你的配置显示一个 Windows Update 画面, 然后你就可以正大光明的划水了. <br />这个项目是前段时间很火的 UWP 应用
+						<a href="https://www.microsoft.com/zh-cn/p/%E6%91%B8%E9%B1%BC/9ndj3q12nrrm"
+							><el-icon><Link /></el-icon>摸鱼</a
+						>
+						的 Web 版本, 在此基础上解决了一些小问题(双屏, 鼠标样式.
+						<a href="https://github.com/KairuiLiu/huashui"
+							><el-icon><Link /></el-icon>去GitHub了解更多</a
+						>
+						)
+					</p>
+					<h4><span>使用指南</span></h4>
 					<ol>
-						<li>打开页面后配置划水时间, 需要显示的前景色与背景色(提供windows预设的主题色表)</li>
+						<li>打开页面后配置划水时间, 需要显示的前景色与背景色(提供windows预设的主题色表), 系统缩放比例</li>
 						<li>点击开始划水就可以进入划水页面了</li>
 						<li>按下F11将网页全屏, 右键即可切换鼠标是否显示</li>
 						<li>
@@ -51,6 +66,10 @@
 								</li>
 							</ul>
 						</li>
+						<li>
+							关于系统缩放比例: Windows系统会为高分屏配置全局缩放, 用户也可以在浏览器中缩放页面大小, 为了使伪装更新页面不会被系统与浏览器缩放影响, 配置页面会检测缩放比例,
+							如果你觉得缩放比例有问题也可以直接调整. 配置后, 在伪装页面工作时您可以自由的缩放页面而不会影响显示.
+						</li>
 					</ol>
 				</div>
 			</el-main>
@@ -71,6 +90,7 @@
 import { defineComponent, onMounted, reactive, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import type { ElForm } from 'element-plus';
+import { Link } from '@element-plus/icons-vue';
 import { IConfig } from '../../types/config';
 import { ColorOps } from './colors';
 
@@ -89,6 +109,16 @@ const rules = reactive({
 			validator: (rule: any, value: any, callback: any) => {
 				if (value <= 0) {
 					callback(new Error('划水时间设置错误'));
+				} else callback();
+			},
+			trigger: 'blur',
+		},
+	],
+	scale: [
+		{
+			validator: (rule: any, value: any, callback: any) => {
+				if (value <= 0) {
+					callback(new Error('没有获取到系统缩放比例, 请您手动设置'));
 				} else callback();
 			},
 			trigger: 'blur',
@@ -128,6 +158,7 @@ onMounted(() => {
 	if (config.value.mutex) {
 		stat.mutexDialogVisible = true;
 	}
+	config.value.scale = window.devicePixelRatio || 1;
 });
 </script>
 
@@ -168,14 +199,14 @@ export default defineComponent({
 	.left {
 		font-size: 20px;
 	}
-	.right a {
-		color: #fff;
-		text-decoration: none;
-	}
 }
 
 .useage {
 	text-align: left;
 	line-height: 1.5;
+	a {
+		// text-decoration: none;
+		color: #303133;
+	}
 }
 </style>

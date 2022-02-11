@@ -7,4 +7,5 @@ export interface IConfig {
 	disabled: boolean;
 	mutex: boolean;
 	lastPost?: number;
+	scale: number;
 }

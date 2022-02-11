@@ -17,6 +17,7 @@ onBeforeMount(() => {
 				timeRest: 180,
 				disabled: false,
 				mutex: false,
+				scale: window.devicePixelRatio || 1,
 			})
 		);
 });

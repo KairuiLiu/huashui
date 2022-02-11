@@ -12,6 +12,7 @@
 		"changelog": "conventional-changelog -p angular -i CHANGELOG.md -s"
 	},
 	"dependencies": {
+		"@element-plus/icons-vue": "^0.2.7",
 		"axios": "^0.25.0",
 		"element-plus": "^2.0.1",
 		"vue": "^3.2.30",
