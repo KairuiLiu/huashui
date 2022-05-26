@@ -1,4 +1,7 @@
-# 🏄🏼 划水
+<h2 align="center"><img src="./public/favicon.png" width="128" height="128"/><br/>划水</h2>
+<p align="center"><strong>将您的电脑伪装为系统更新</strong></p>
+
+<br/>
 
 #### 介绍
 
